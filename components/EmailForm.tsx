@@ -15,6 +15,7 @@ export default function EmailForm() {
     e.preventDefault();
     console.log("Email submitted:", email);
     setSubmitted(true);
+    setAnimationDone(false);
     try {
       const response = await fetch(Google_Sheet_URL, {
         method: 'POST',
@@ -35,7 +36,7 @@ export default function EmailForm() {
     } catch (error) {
       console.error('Error sending request:', error);
     }
-    setTimeout(() => setAnimationDone(true), 2000); // Stop the animation after 2 seconds
+    setAnimationDone(true); // Stop the animation after 2 seconds
   };
 
   return (
@@ -88,7 +89,7 @@ export default function EmailForm() {
             100% { border-color: purple; }
           }
           .animate-borderColor {
-            animation: borderColor 2s linear;
+            animation: borderColor 2s linear infinite;
           }
         `}
       </style>
